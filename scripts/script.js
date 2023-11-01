@@ -5,12 +5,16 @@ const playerScissor = document.querySelector(".player-option.scissor");
 const comRock = document.querySelector(".opponent-option.rock");
 const comPaper = document.querySelector(".opponent-option.paper");
 const comScissor = document.querySelector(".opponent-option.scissor");
+const playerScore = document.querySelector("#player-score");
+const comScore = document.querySelector("#opponent-score");
 
 const message = document.querySelector("#message");
 
 let round = 0;
+let pScore = 0;
+let cScore = 0;
 
-playerMove.addEventListener("click", (e)=>{
+let handler = (e) => {
 	const target = e.target;
 	let valid = false;
 	let result = "";
@@ -44,10 +48,35 @@ playerMove.addEventListener("click", (e)=>{
 			comScissor.setAttribute("style", "border-color: blue");
 		}
 		
-		message.textContent = `Round ${round}: ${result.message}` ; 
+		if (result.score === 1){
+			pScore++;
+		}
+		else if (result.score === -1){
+			cScore++;
+		}
+		updateScore();
+		message.textContent = `Round ${round}: ${result.message}`;
+
+		if (pScore >= 5){
+			alert("You have won!");
+			playerMove.removeEventListener("click", handler);
+		}
+		else if (cScore >= 5){
+			alert("You have lost!");
+			playerMove.removeEventListener("click", handler);
+		}
 		
 	}
-});
+};
+
+playerMove.addEventListener("click", handler);
+
+
+function updateScore(){
+	playerScore.textContent = `Score: ${pScore}`;
+	comScore.textContent = `Score: ${cScore}`;
+}
+
 
 function resetBorder(){
 	playerRock.setAttribute("style", "border-color: black");
@@ -91,7 +120,7 @@ function playRound(playerSelection, computerSelection){
 	}
 	else{
 		message = `You Lost! ${playerChoice} loses to ${computerChoice}.`;
-		score = 0;
+		score = -1;
 	}
 	
 	return {
