@@ -6,31 +6,61 @@ body {
   padding: 25px 100px;
 }
 
-#opponent-info, #opponent-move{
+#opponent-info,
+#opponent-move,
+#player-info,
+#player-move{
   display: flex;
   justify-content: space-between;
+}
+
+#opponent-info,
+#opponent-move{
   background-color: #FFCCCB;
 }
 
-.info {
+#player-info,
+#player-move{
+  background-color: #AAFFFF;
+}
+
+.info,
+#round-info {
   font-size: 32px;
   color: black;
   padding: 16px;
   word-break: break-all;
 }
 
-#opponent-move{
+#opponent-move,
+#player-move{
   justify-content: center;
   gap: 50px;
   padding: 25px 0;
 }
 
-.opponent-option{
+.opponent-option,
+.player-option{
   font-size: 24px;
   color: black;
   padding: 10px 20px;
   border: 2px solid black;
   border-radius: 5px;
   word-break: break-all;
+}
+
+.opponent-option{
   background-color: #E85353;
+}
+
+.player-option{
+  background-color: #a8a8f9;
+}
+
+#round-info {
+  background-color: white;
+  flex: 1 0 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
